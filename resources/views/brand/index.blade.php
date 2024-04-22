@@ -2,16 +2,16 @@
 @section('content')
 <div class="bg-white shadow-lg rounded px-8 mt-12 pt-6 pb-8 mb-4 flex flex-col my-2">
     <div class="mb-6">
-      <h1 class="text-2xl">Fill up the form to add new category.</h1>
+      <h1 class="text-2xl">Fill up the form to add new brand.</h1>
     </div>
-    <form method="POST" action="{{ route('category.store') }}">
+    <form method="POST" action="{{ route('brand.store') }}">
         @csrf
       <div class="-mx-3 md:flex mb-6">
         <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-          <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="category_name">
-            Category Name
+          <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="brand_name">
+            Brand Name
           </label>
-          <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" name="category_name" id="category_name" type="text" placeholder="Please enter category name">
+          <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" name="brand_name" id="brand_name" type="text" placeholder="Please enter brand name">
         </div>
         <div class="md:w-1/2 px-3 mb-6 md:mb-0">
             <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="status">
@@ -30,7 +30,7 @@
   <hr />
   <div class="pt-2">    
       <div class="table w-full p-2">
-          <h1 class="pb-3 text-2xl">All Category</h1>
+          <h1 class="pb-3 text-2xl">All Brand</h1>
           <table class="w-full border">
               <thead>
                   <tr class="bg-gray-50 border-b">
@@ -60,23 +60,23 @@
                   </tr>
               </thead>
               <tbody>
-                    @foreach( $categories as $key => $category)
+                    @foreach( $brands as $key => $brand )
                         <tr class="bg-gray-100 text-center border-b text-sm text-gray-600">
                             <td class="border-r">{{ ++$key }}</td>
-                            <td class="border-r">{{ $category->category_name}}</td>
+                            <td class="border-r">{{ $brand->brand_name}}</td>
                             <td class="border-r">
-                                @if ( $category->status == 1)
+                                @if ( $brand->status == 1)
                                     Available
                                 @else
                                     Not available
                                 @endif
                             </td>
                             <td class="flex justify-center space-x-2 p-2">
-                                <a href="{{ route('category.edit', $category->id)}}">
+                                <a href="{{ route('brand.edit', $brand->id)}}">
                                     <button class="bg-blue-500 hover:bg-blue-600 p-2 text-white hover:shadow-lg rounded-lg text-xs font-thin">Edit</button>
                                 </a>
                             
-                                <form action="{{ route('category.destroy', $category->id)}}" method="POST">
+                                <form action="{{ route('brand.destroy', $brand->id)}}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button class="bg-red-500 hover:bg-red-600 p-2 text-white hover:shadow-lg rounded-lg text-xs font-thin">Remove</button>

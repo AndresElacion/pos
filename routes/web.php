@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,9 @@ Route::get('/', function () {
 
 /* This is for category */
 Route::resource('/category', CategoryController::class);
+
+/* This is for brand */
+Route::resource('/brand', BrandController::class);
 
 /* This is for dashboard */
 Route::get('/dashboard', function () {
