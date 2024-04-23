@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sales;
 use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\Brand;
-use App\Models\Category;
 
-class ProductController extends Controller
+class SalesController extends Controller
 {
-    protected $product;
+    protected $sale;
 
     public function __construct()
     {
-        $this->product = new Product();
+        $this->sale = new Sales();
     }
 
     /**
@@ -21,11 +19,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = $this->product->all();
-        $categories = Category::pluck('category_name', 'id');
-        $brands = Brand::pluck('brand_name', 'id');
+        $sale = Sales::orderBy('created_at', 'asc')->get();
 
-        return view('product.index', compact('products', 'categories', 'brands'));
+        return view('sales.create', ['sales' => $sale]);
     }
 
     /**
@@ -41,9 +37,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $this->product->create($request->all());
-
-        return redirect()->back();
+        //
     }
 
     /**
